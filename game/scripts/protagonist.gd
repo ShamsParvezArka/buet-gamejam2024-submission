@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var open: Label = $F/open
 
 var can_move := true
-@export var can_open := false
+var can_open := false
 var tp := false
 var has_sowrd := false
 var is_chest := false
@@ -45,14 +45,10 @@ func _input(event: InputEvent) -> void:
 		animate_sprite()
 	elif tp == true:
 		state_machine.play("teleport")
-	else:
-		state_machine.play("idle")
-		
-	if is_chest and Input.is_action_just_pressed("key_f"):
-		can_open = true
 
 
 func _ready() -> void:
+	state_machine.play("idle")
 	$Camera2D.enabled = true
 	$"../VoidSpaceCutScene/Path2D/PathFollow2D/Camera2D".enabled = false
 	$"../FridgeCutScene/Path2D/PathFollow2D/Camera2D".enabled = false

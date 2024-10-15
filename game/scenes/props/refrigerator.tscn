@@ -54,8 +54,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5pw1"]
 size = Vector2(14, 24)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vkg7h"]
-radius = 22.2036
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jr62v"]
+size = Vector2(20, 30)
 
 [node name="Refrigerator" type="StaticBody2D"]
 
@@ -70,7 +70,7 @@ shape = SubResource("RectangleShape2D_c5pw1")
 script = ExtResource("2_06xgx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RefrigeratorArea"]
-shape = SubResource("CircleShape2D_vkg7h")
+shape = SubResource("RectangleShape2D_jr62v")
 
 [connection signal="body_entered" from="RefrigeratorArea" to="RefrigeratorArea" method="_on_body_entered"]
 [connection signal="body_exited" from="RefrigeratorArea" to="RefrigeratorArea" method="_on_body_exited"]
