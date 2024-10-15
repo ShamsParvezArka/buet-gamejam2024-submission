@@ -12,9 +12,10 @@ var has_sowrd := false
 var is_chest := false
 var can_save := false
 var is_played := false
+var weapon_equipped := false
+var attacking := false
 
 @onready var chest: StaticBody2D = $"../Chest"
-
 
 func animate_sprite() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
@@ -25,21 +26,35 @@ func animate_sprite() -> void:
 		state_machine.flip_h = true
 	
 	var movement := Input.get_vector("move_right", "move_left", "move_down", "move_up")
-	
-	if (movement):
-		state_machine.play("run")
+
+	if weapon_equipped:
+		if movement and !attacking:
+			state_machine.play("sowrd_run")
+		elif Input.is_action_just_pressed("mouse_left") and !attacking:
+			state_machine.play("idle_and_swing")
+			attacking = true
+		elif !movement and !attacking:
+			state_machine.play("sowrd_idle")
 	else:
-		state_machine.play("idle")
+		if movement:
+			state_machine.play("run")
+		else:
+			state_machine.play("idle")
 		
+
 
 func _input(event: InputEvent) -> void:
 	var input_vec := Vector2.ZERO
 	
-	input_vec.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	input_vec.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	input_vec.normalized()
+	if can_move:
+		input_vec.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		input_vec.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+		input_vec.normalized()
 	
 	velocity = (input_vec * speed) if input_vec else input_vec
+	
+	if Input.is_action_just_pressed("key_x"):
+		weapon_equipped = !weapon_equipped
 	
 	if can_move == true:
 		animate_sprite()
@@ -48,7 +63,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	state_machine.play("idle")
+	state_machine.play("sowrd_idle")
 	$Camera2D.enabled = true
 	$"../VoidSpaceCutScene/Path2D/PathFollow2D/Camera2D".enabled = false
 	$"../FridgeCutScene/Path2D/PathFollow2D/Camera2D".enabled = false
@@ -64,6 +79,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		f.visible = false
 	
-	
-	if can_move == true:
+	if can_move:
 		move_and_slide()
+	elif !can_move and weapon_equipped:
+		state_machine.play("sowrd_idle")
+	else:
+		state_machine.play("idle")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if state_machine.animation == "idle_and_swing":
+		state_machine.play("sowrd_idle")
+		attacking = false
