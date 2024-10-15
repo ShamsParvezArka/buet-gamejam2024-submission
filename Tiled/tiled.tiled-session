@@ -11,14 +11,14 @@
     "fileStates": {
         "MAP.tmx": {
             "scale": 1.5,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 400,
-                "y": 360.66666666666663
+                "x": 162.66666666666666,
+                "y": 984
             }
         },
         "animated_props.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 3
         },
         "floor.tsx": {
@@ -58,7 +58,7 @@
             "scaleInEditor": 3
         },
         "props.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 3
         },
         "walls.tsx": {
