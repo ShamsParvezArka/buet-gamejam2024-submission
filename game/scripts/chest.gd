@@ -20,4 +20,5 @@ func _input(event: InputEvent) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Protagonist" and is_open:
 		is_open = false
+		is_inside = false
 		animated_sprite_2d.play("chest_close")
