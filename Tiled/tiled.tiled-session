@@ -1,0 +1,110 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "MAP.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "exportAsImage.useCurrentScale": true,
+    "fileStates": {
+        "MAP.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 400,
+                "y": 360.66666666666663
+            }
+        },
+        "animated_props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "floor.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 3
+        },
+        "ground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "mob-bat.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "mob-elf.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "mob-rat.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "mob-slime.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "obj.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "obj2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "pickup_items_animated.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "walls.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 3
+        }
+    },
+    "last.imagePath": "E:/C_coding/GH_REPO/buet-gamejam-2024/game/assets/SGQ_Dungeon/all_unclassified",
+    "map.height": 100,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 150,
+    "openFiles": [
+        "MAP.tmx",
+        "floor.tsx",
+        "ground.tsx",
+        "walls.tsx",
+        "obj.tsx",
+        "obj2.tsx",
+        "mob-bat.tsx",
+        "mob-rat.tsx",
+        "mob-elf.tsx",
+        "mob-slime.tsx",
+        "animated_props.tsx",
+        "props.tsx",
+        "pickup_items_animated.tsx"
+    ],
+    "project": "tiled.tiled-project",
+    "recentFiles": [
+        "pickup_items_animated.tsx",
+        "props.tsx",
+        "animated_props.tsx",
+        "mob-slime.tsx",
+        "mob-elf.tsx",
+        "mob-rat.tsx",
+        "mob-bat.tsx",
+        "obj2.tsx",
+        "obj.tsx",
+        "walls.tsx",
+        "ground.tsx",
+        "floor.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

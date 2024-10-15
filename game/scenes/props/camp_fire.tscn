@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://vxsv42fi8qqs"]
+
+[ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_juq55"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s60aq"]
+atlas = ExtResource("1_juq55")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cld3r"]
+atlas = ExtResource("1_juq55")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0fj8"]
+atlas = ExtResource("1_juq55")
+region = Rect2(32, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfg2w"]
+atlas = ExtResource("1_juq55")
+region = Rect2(48, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0j6ju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s60aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cld3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0fj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfg2w")
+}],
+"loop": true,
+"name": &"camp_fire",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41e2s"]
+radius = 7.0
+
+[node name="CampFire" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0j6ju")
+animation = &"camp_fire"
+frame = 1
+frame_progress = 0.832222
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_41e2s")

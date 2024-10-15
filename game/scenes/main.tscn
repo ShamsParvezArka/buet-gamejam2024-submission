@@ -1,0 +1,457 @@
+[gd_scene load_steps=24 format=3 uid="uid://b3ee2t4b5aj6a"]
+
+[ext_resource type="PackedScene" uid="uid://p1f0m740q7ya" path="res://scenes/levels/level_0.tscn" id="1_2qjf0"]
+[ext_resource type="PackedScene" uid="uid://bvhrdyvtjb3xc" path="res://scenes/protagonist.tscn" id="1_hjr4h"]
+[ext_resource type="PackedScene" uid="uid://0jb7hhe0q14v" path="res://scenes/props/chest.tscn" id="2_3xbwn"]
+[ext_resource type="PackedScene" uid="uid://cmo1hg5juafph" path="res://scenes/mobs/mob_bat.tscn" id="4_3a4i6"]
+[ext_resource type="Script" path="res://scripts/f_key.gd" id="4_xsmvy"]
+[ext_resource type="PackedScene" uid="uid://cyg33xrhaimud" path="res://scenes/mobs/mob_slime.tscn" id="5_574r7"]
+[ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="5_lsfm7"]
+[ext_resource type="Script" path="res://scripts/cut_scene_triggerer.gd" id="6_wdkr3"]
+[ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="7_lgcqc"]
+[ext_resource type="Script" path="res://scripts/fridge_cut_scene.gd" id="8_xhwsq"]
+[ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_oya6c"]
+[ext_resource type="Script" path="res://scripts/teleport.gd" id="10_mo7xf"]
+
+[sub_resource type="Curve2D" id="Curve2D_rcv58"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 313, 246, 0, 0, 0, 0, 195, 379)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hjrr"]
+radius = 15.0333
+
+[sub_resource type="Animation" id="Animation_0ticb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow2D:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Protagonist/Camera2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PathFollow2D/Camera2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6q5te"]
+resource_name = "show_cut_scene"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.56667, 4.13333, 5.53333, 6.16667, 8.7, 11.6667, 12.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.282143, 0.282143, 0.35, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow2D:progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.06667, 12.9, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 177.42, 177.42, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Protagonist/Camera2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PathFollow2D/Camera2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kv0a8"]
+_data = {
+"RESET": SubResource("Animation_0ticb"),
+"show_cut_scene": SubResource("Animation_6q5te")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_l1rry"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 30, 0, 0, 0, 0, -7, -89)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ew2o3"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_m0kqm"]
+resource_name = "show_cut_scene"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.03333, 12.3333, 13.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 119.0, 119.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.03333, 4.26667, 11.2667, 11.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReasonToLive:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.03333, 7, 10.8333, 11.2667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SavePrompt:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7.8, 9.53333, 10.3667, 10.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Protagonist/Camera2D:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Path2D/PathFollow2D/Camera2D:enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_fodkj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReasonToLive:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Protagonist/Camera2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Path2D/PathFollow2D/Camera2D:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q0sme"]
+_data = {
+"RESET": SubResource("Animation_fodkj"),
+"show_cut_scene": SubResource("Animation_m0kqm")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5olja"]
+b = Vector2(0, 21.1957)
+
+[node name="Main" type="Node2D"]
+
+[node name="Level0" parent="." instance=ExtResource("1_2qjf0")]
+position = Vector2(1, 1)
+
+[node name="Chest" parent="." instance=ExtResource("2_3xbwn")]
+position = Vector2(402, 123)
+scale = Vector2(1.51999, 1.2)
+
+[node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
+position = Vector2(340, 144)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Protagonist"]
+position = Vector2(-1, 0)
+enabled = false
+zoom = Vector2(4, 4)
+
+[node name="F" type="Node2D" parent="Protagonist"]
+position = Vector2(0, 3)
+scale = Vector2(0.624543, 0.64)
+script = ExtResource("4_xsmvy")
+
+[node name="open" type="Label" parent="Protagonist/F"]
+offset_left = 27.0
+offset_top = -3.0
+offset_right = 117.0
+offset_bottom = 20.0
+scale = Vector2(0.359995, 0.400002)
+theme_override_colors/font_color = Color(0.345098, 0.266667, 0.133333, 1)
+theme_override_fonts/font = ExtResource("9_oya6c")
+text = "open"
+
+[node name="Sprite2D" type="Sprite2D" parent="Protagonist/F"]
+position = Vector2(20, 0)
+scale = Vector2(0.560005, 0.584436)
+texture = ExtResource("5_lsfm7")
+hframes = 3
+vframes = 2
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="MobBat" parent="Mobs" instance=ExtResource("4_3a4i6")]
+position = Vector2(531, 500)
+
+[node name="CharacterBody2D" parent="Mobs" instance=ExtResource("5_574r7")]
+position = Vector2(507, 464)
+
+[node name="VoidSpaceCutScene" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="VoidSpaceCutScene"]
+curve = SubResource("Curve2D_rcv58")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="VoidSpaceCutScene/Path2D"]
+position = Vector2(313, 246)
+rotation = 2.2965
+
+[node name="Camera2D" type="Camera2D" parent="VoidSpaceCutScene/Path2D/PathFollow2D"]
+zoom = Vector2(4, 4)
+
+[node name="CutSceneTriggerer" type="Area2D" parent="VoidSpaceCutScene"]
+position = Vector2(296, 265)
+script = ExtResource("6_wdkr3")
+
+[node name="CutSceneCollider" type="CollisionShape2D" parent="VoidSpaceCutScene/CutSceneTriggerer"]
+shape = SubResource("CircleShape2D_3hjrr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VoidSpaceCutScene"]
+root_node = NodePath("../Path2D")
+libraries = {
+"": SubResource("AnimationLibrary_kv0a8")
+}
+
+[node name="Label" type="Label" parent="VoidSpaceCutScene"]
+offset_left = 58.0
+offset_top = 439.0
+offset_right = 445.0
+offset_bottom = 463.0
+scale = Vector2(0.739394, 0.668705)
+theme_override_fonts/font = ExtResource("7_lgcqc")
+theme_override_font_sizes/font_size = 8
+text = "Void Space...
+Lots  of miners lost their lives here
+"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="FridgeCutScene" type="Node2D" parent="."]
+position = Vector2(527, 255)
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="FridgeCutScene"]
+curve = SubResource("Curve2D_l1rry")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FridgeCutScene/Path2D"]
+position = Vector2(0, 30)
+rotation = -1.62955
+
+[node name="Camera2D" type="Camera2D" parent="FridgeCutScene/Path2D/PathFollow2D"]
+zoom = Vector2(4, 4)
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="FridgeCutScene"]
+script = ExtResource("8_xhwsq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FridgeCutScene/Area2D"]
+position = Vector2(7, 16)
+shape = SubResource("CircleShape2D_ew2o3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FridgeCutScene"]
+libraries = {
+"": SubResource("AnimationLibrary_q0sme")
+}
+
+[node name="MainLabel" type="Label" parent="FridgeCutScene"]
+offset_left = -49.0
+offset_top = -160.0
+offset_right = 161.0
+offset_bottom = -137.0
+scale = Vector2(0.43999, 0.481248)
+theme_override_fonts/font = ExtResource("7_lgcqc")
+text = "Refrigerator"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ReasonToLive" type="Label" parent="FridgeCutScene"]
+offset_left = -48.0
+offset_top = -151.0
+offset_right = 446.0
+offset_bottom = -130.0
+scale = Vector2(0.212, 0.359995)
+theme_override_fonts/font = ExtResource("9_oya6c")
+text = "the reason why you  are still alive!"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="SavePrompt" type="Label" parent="FridgeCutScene"]
+offset_left = -36.0
+offset_top = -101.0
+offset_right = 272.0
+offset_bottom = -66.0
+scale = Vector2(0.28, 0.360002)
+theme_override_colors/font_color = Color(0.345098, 0.266667, 0.133333, 1)
+theme_override_colors/font_shadow_color = Color(0.545379, 0.430587, 0.23665, 1)
+theme_override_fonts/font = ExtResource("7_lgcqc")
+text = "save your memories here"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="EndArea2D" type="Area2D" parent="."]
+position = Vector2(717, 311)
+scale = Vector2(2.04001, 1.84)
+script = ExtResource("10_mo7xf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea2D"]
+position = Vector2(0, -10.3261)
+scale = Vector2(5.86272, 1)
+shape = SubResource("SegmentShape2D_5olja")
+
+[connection signal="body_entered" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_entered"]
+[connection signal="body_exited" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_exited"]
+[connection signal="animation_finished" from="VoidSpaceCutScene/AnimationPlayer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="FridgeCutScene/Area2D" to="FridgeCutScene/Area2D" method="_on_body_entered"]
+[connection signal="animation_finished" from="FridgeCutScene/AnimationPlayer" to="FridgeCutScene/Area2D" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="EndArea2D" to="EndArea2D" method="_on_body_entered"]

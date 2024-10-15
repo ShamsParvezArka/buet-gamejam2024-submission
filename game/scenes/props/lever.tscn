@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce38j6kx5xtb0"]
+
+[ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_4lfr6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve3fx"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agasu"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa7qe"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6puw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ve3fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agasu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa7qe")
+}],
+"loop": true,
+"name": &"lever",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rerw"]
+size = Vector2(11, 6)
+
+[node name="lever" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t6puw")
+animation = &"lever"
+frame_progress = 0.7041
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_7rerw")
