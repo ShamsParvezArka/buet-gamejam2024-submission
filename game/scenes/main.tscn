@@ -1,16 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3ee2t4b5aj6a"]
+[gd_scene load_steps=22 format=3 uid="uid://b3ee2t4b5aj6a"]
 
 [ext_resource type="PackedScene" uid="uid://p1f0m740q7ya" path="res://scenes/levels/level_0.tscn" id="1_2qjf0"]
 [ext_resource type="PackedScene" uid="uid://bvhrdyvtjb3xc" path="res://scenes/protagonist.tscn" id="1_hjr4h"]
 [ext_resource type="PackedScene" uid="uid://0jb7hhe0q14v" path="res://scenes/props/chest.tscn" id="2_3xbwn"]
-[ext_resource type="Script" path="res://scripts/f_key.gd" id="4_xsmvy"]
-[ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="5_lsfm7"]
 [ext_resource type="Script" path="res://scripts/cut_scene_triggerer.gd" id="6_wdkr3"]
 [ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="7_lgcqc"]
 [ext_resource type="Script" path="res://scripts/fridge_cut_scene.gd" id="8_xhwsq"]
 [ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_oya6c"]
 [ext_resource type="Script" path="res://scripts/teleport.gd" id="10_mo7xf"]
 [ext_resource type="PackedScene" uid="uid://cmo1hg5juafph" path="res://scenes/mobs/mob_bat.tscn" id="11_efdoo"]
+[ext_resource type="PackedScene" uid="uid://bd85fwinbdv3u" path="res://scenes/mobs/knock_back.tscn" id="11_gt6ps"]
 
 [sub_resource type="Curve2D" id="Curve2D_rcv58"]
 _data = {
@@ -297,34 +296,12 @@ position = Vector2(402, 123)
 scale = Vector2(1.31999, 1.16)
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(381, 137)
+position = Vector2(550, 162)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 position = Vector2(-1, 0)
 enabled = false
 zoom = Vector2(4, 4)
-
-[node name="F" type="Node2D" parent="Protagonist"]
-position = Vector2(0, 3)
-scale = Vector2(0.624543, 0.64)
-script = ExtResource("4_xsmvy")
-
-[node name="open" type="Label" parent="Protagonist/F"]
-offset_left = -10.9363
-offset_top = 13.2988
-offset_right = 79.0637
-offset_bottom = 36.2988
-scale = Vector2(0.359995, 0.400002)
-theme_override_colors/font_color = Color(0.345098, 0.266667, 0.133333, 1)
-theme_override_fonts/font = ExtResource("9_oya6c")
-text = "open"
-
-[node name="Sprite2D" type="Sprite2D" parent="Protagonist/F"]
-position = Vector2(-17.9363, 16.2988)
-scale = Vector2(0.560005, 0.584436)
-texture = ExtResource("5_lsfm7")
-hframes = 3
-vframes = 2
 
 [node name="VoidSpaceCutScene" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -444,6 +421,8 @@ shape = SubResource("SegmentShape2D_5olja")
 
 [node name="MobBat" parent="Mobs" instance=ExtResource("11_efdoo")]
 position = Vector2(329, 207)
+
+[node name="Area2D2" parent="Mobs/MobBat" instance=ExtResource("11_gt6ps")]
 
 [connection signal="body_entered" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_entered"]
 [connection signal="body_exited" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_exited"]
