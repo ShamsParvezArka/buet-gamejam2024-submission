@@ -2,20 +2,17 @@ extends CharacterBody2D
 
 @export var speed := 50
 @onready var state_machine := $AnimatedSprite2D
-@onready var f: Node2D = $F
-@onready var open: Label = $F/open
+@onready var chest: StaticBody2D = $"../Chest"
+@onready var audio_run: AudioStreamPlayer2D = $AudioRun
+@onready var audio_sowrd_swing: AudioStreamPlayer2D = $AudioSowrdSwing
 
 var can_move := true
-var can_open := false
-var tp := false
+var teleport := false
 var has_sowrd := false
-var is_chest := false
-var can_save := false
 var is_played := false
 var weapon_equipped := false
 var attacking := false
 
-@onready var chest: StaticBody2D = $"../Chest"
 
 func animate_sprite() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
@@ -31,13 +28,18 @@ func animate_sprite() -> void:
 		if movement and !attacking:
 			state_machine.play("sowrd_run")
 		elif Input.is_action_just_pressed("mouse_left") and !attacking:
-			state_machine.play("idle_and_swing")
 			attacking = true
+			if !audio_sowrd_swing.playing:
+				audio_sowrd_swing.play()
+			state_machine.play("idle_and_swing")
+			
 		elif !movement and !attacking:
 			state_machine.play("sowrd_idle")
 	else:
 		if movement:
 			state_machine.play("run")
+			if !audio_run.playing:
+				audio_run.play()
 		else:
 			state_machine.play("idle")
 		
@@ -58,27 +60,17 @@ func _input(event: InputEvent) -> void:
 	
 	if can_move == true:
 		animate_sprite()
-	elif tp == true:
+	elif teleport == true:
 		state_machine.play("teleport")
 
 
 func _ready() -> void:
-	state_machine.play("sowrd_idle")
 	$Camera2D.enabled = true
 	$"../VoidSpaceCutScene/Path2D/PathFollow2D/Camera2D".enabled = false
 	$"../FridgeCutScene/Path2D/PathFollow2D/Camera2D".enabled = false
 
 
 func _physics_process(delta: float) -> void:
-	if can_save == true:
-		open.text = "save"
-		f.visible = true	
-	elif is_chest == true:
-		open.text = "open"
-		f.visible = true
-	else:
-		f.visible = false
-	
 	if can_move:
 		move_and_slide()
 	elif !can_move and weapon_equipped:

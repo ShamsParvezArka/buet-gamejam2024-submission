@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ckm3rxam3p7dv" path="res://assets/SGQ_Dungeon/characters/main/elf.png" id="1_ykllr"]
 [ext_resource type="AudioStream" uid="uid://cyxc7rrxhup68" path="res://assets/sfx/running.wav" id="2_m2xt4"]
 [ext_resource type="Texture2D" uid="uid://dlcx41260vfyb" path="res://assets/SGQ_Dungeon/characters/main/idle_and_swing.png" id="3_6kia8"]
-[ext_resource type="AudioStream" uid="uid://mwopi2cimj4l" path="res://assets/sfx/sowrd_swing.wav" id="3_w61n7"]
+[ext_resource type="Script" path="res://scripts/protagonist_area.gd" id="3_ok4xl"]
 [ext_resource type="Texture2D" uid="uid://rilyahmyn865" path="res://assets/SGQ_Dungeon/characters/main/run_and_swing.png" id="4_sbauk"]
 [ext_resource type="Texture2D" uid="uid://dei5fleh3xa37" path="res://assets/SGQ_Dungeon/characters/main/sowrd_idle.png" id="5_fioxv"]
 [ext_resource type="Texture2D" uid="uid://uc33tun8xond" path="res://assets/SGQ_Dungeon/characters/main/sowrd_run.png" id="6_ovuu8"]
@@ -222,7 +222,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle_and_swing",
-"speed": 8.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -239,7 +239,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -290,7 +290,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"sowrd_run",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -330,16 +330,13 @@ metadata/_edit_group_ = true
 
 [node name="AudioRun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_m2xt4")
-volume_db = -18.0
-
-[node name="AudioSowrdSwing" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_w61n7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.1875, 1.1875)
 sprite_frames = SubResource("SpriteFrames_m3jk3")
-animation = &"sowrd_run"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.434709
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5)
@@ -347,6 +344,7 @@ shape = SubResource("RectangleShape2D_bbt0j")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
+script = ExtResource("3_ok4xl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_m6d4j")
