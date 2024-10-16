@@ -54,7 +54,6 @@ func animate_sprite() -> void:
 				audio_run.play()
 		else:
 			state_machine.play("idle")
-		
 
 
 func _input(event: InputEvent) -> void:
@@ -84,6 +83,7 @@ func _process(delta: float) -> void:
 	switches = true
 	for i in puzzle.get_children():
 		switches = switches and i.on
+
 
 func _physics_process(delta: float) -> void:
 	if can_move:
