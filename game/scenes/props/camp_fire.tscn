@@ -35,7 +35,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"camp_fire",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_41e2s"]
@@ -46,8 +46,8 @@ radius = 7.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0j6ju")
 animation = &"camp_fire"
-frame = 1
-frame_progress = 0.832222
+autoplay = "camp_fire"
+frame_progress = 0.472327
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://p1f0m740q7ya"]
+[gd_scene load_steps=15 format=4 uid="uid://p1f0m740q7ya"]
 
 [ext_resource type="Texture2D" uid="uid://dqd13epq1wbtd" path="res://assets/SGQ_Dungeon/grounds_and_walls/walls.png" id="1_j3w06"]
 [ext_resource type="Texture2D" uid="uid://b1yf37j2u6aa" path="res://assets/SGQ_Dungeon/grounds_and_walls/grounds.png" id="2_gqjbh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cen8qt3ugv4vm" path="res://scenes/keyboard.tscn" id="5_hiyxx"]
 [ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_pneon"]
 [ext_resource type="PackedScene" uid="uid://bh8b0krwqniqq" path="res://scenes/props/refrigerator.tscn" id="7_xmct7"]
+[ext_resource type="PackedScene" uid="uid://cd8yavl5560f2" path="res://scenes/props/healing_bucket.tscn" id="8_0gs5j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pqlh"]
 texture = ExtResource("1_j3w06")
@@ -722,3 +723,6 @@ text = "End of tutorial"
 [node name="Refrigerator" parent="." instance=ExtResource("7_xmct7")]
 position = Vector2(504.991, 127.555)
 scale = Vector2(1.23765, 1.19624)
+
+[node name="HealingBucket" parent="." instance=ExtResource("8_0gs5j")]
+position = Vector2(230.711, 109.893)

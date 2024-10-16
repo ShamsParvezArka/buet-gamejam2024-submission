@@ -46,6 +46,7 @@ size = Vector2(12, 14)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aqj1t")
 animation = &"healing_bucket"
+autoplay = "healing_bucket"
 frame = 3
 frame_progress = 0.107115
 
