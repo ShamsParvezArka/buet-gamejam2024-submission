@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hlo5asavuxyt"
+path="res://.godot/imported/Select 3.wav-ef1f77aeab45aa64e6f822e3f10d32cb.sample"
+
+[deps]
+
+source_file="res://assets/sfx/8-bit Sound Effects Pack 001/Select 3.wav"
+dest_files=["res://.godot/imported/Select 3.wav-ef1f77aeab45aa64e6f822e3f10d32cb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

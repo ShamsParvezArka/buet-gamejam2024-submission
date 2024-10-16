@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwx5pgus14sc6"
+path="res://.godot/imported/Powerup 2.wav-53d0d7145014e2b5970709d159cc928e.sample"
+
+[deps]
+
+source_file="res://assets/sfx/8-bit Sound Effects Pack 001/Powerup 2.wav"
+dest_files=["res://.godot/imported/Powerup 2.wav-53d0d7145014e2b5970709d159cc928e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

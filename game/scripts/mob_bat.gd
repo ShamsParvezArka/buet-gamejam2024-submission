@@ -11,6 +11,7 @@ var is_retreating = false
 var retreat_distance = 10
 @onready var player: CharacterBody2D = $"../../Protagonist"
 @onready var mob_animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var player_area_2d: Area2D = player.get_node("Area2D")
 
 
 func _ready() -> void:
@@ -18,15 +19,15 @@ func _ready() -> void:
 	
 
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	SPEED *= 1
-	mob_animated_sprite_2d.play("attack_right")
-	print("_on_area_2d_area_entered(")
-	
+	if (area == player_area_2d):
+		SPEED *= 1
+		mob_animated_sprite_2d.play("attack_right")
+		#print("_on_area_2d_area_entered(")
 
 
-func _on_area_2d_area_exited(area: Area2D) -> void:
+
+func _on_area_2d_area_exited(body: Node2D) -> void:
 	SPEED = 10.0
 	mob_animated_sprite_2d.play("fly_right")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3ee2t4b5aj6a"]
+[gd_scene load_steps=24 format=3 uid="uid://b3ee2t4b5aj6a"]
 
 [ext_resource type="PackedScene" uid="uid://p1f0m740q7ya" path="res://scenes/levels/level_0.tscn" id="1_2qjf0"]
 [ext_resource type="PackedScene" uid="uid://bvhrdyvtjb3xc" path="res://scenes/protagonist.tscn" id="1_hjr4h"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scripts/fridge_cut_scene.gd" id="8_xhwsq"]
 [ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_oya6c"]
 [ext_resource type="Script" path="res://scripts/teleport.gd" id="10_mo7xf"]
+[ext_resource type="PackedScene" uid="uid://cmo1hg5juafph" path="res://scenes/mobs/mob_bat.tscn" id="11_efdoo"]
+[ext_resource type="PackedScene" uid="uid://bd85fwinbdv3u" path="res://scenes/mobs/knock_back.tscn" id="11_gt6ps"]
 
 [sub_resource type="Curve2D" id="Curve2D_rcv58"]
 _data = {
@@ -438,6 +440,13 @@ script = ExtResource("10_mo7xf")
 position = Vector2(0, -10.3261)
 scale = Vector2(5.86272, 1)
 shape = SubResource("SegmentShape2D_5olja")
+
+[node name="Mobs" type="Node" parent="."]
+
+[node name="MobBat" parent="Mobs" instance=ExtResource("11_efdoo")]
+position = Vector2(329, 207)
+
+[node name="Area2D2" parent="Mobs/MobBat" instance=ExtResource("11_gt6ps")]
 
 [connection signal="body_entered" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_entered"]
 [connection signal="body_exited" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_exited"]
