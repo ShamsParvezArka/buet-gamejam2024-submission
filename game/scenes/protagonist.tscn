@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bvhrdyvtjb3xc"]
+[gd_scene load_steps=52 format=3 uid="uid://bvhrdyvtjb3xc"]
 
 [ext_resource type="Script" path="res://scripts/protagonist.gd" id="1_rko0e"]
 [ext_resource type="Texture2D" uid="uid://ckm3rxam3p7dv" path="res://assets/SGQ_Dungeon/characters/main/elf.png" id="1_ykllr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dei5fleh3xa37" path="res://assets/SGQ_Dungeon/characters/main/sowrd_idle.png" id="5_fioxv"]
 [ext_resource type="Texture2D" uid="uid://uc33tun8xond" path="res://assets/SGQ_Dungeon/characters/main/sowrd_run.png" id="6_ovuu8"]
 [ext_resource type="Texture2D" uid="uid://c1kcsd0sqp2wf" path="res://assets/light.png" id="9_r63to"]
+[ext_resource type="Script" path="res://scripts/parea.gd" id="9_yv31y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jm80k"]
 atlas = ExtResource("1_ykllr")
@@ -189,8 +190,32 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf5h2")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -317,12 +342,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbt0j"]
-size = Vector2(11, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdaj1"]
+radius = 5.02494
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6d4j"]
-radius = 7.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f3ul"]
+size = Vector2(7, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fum14"]
+size = Vector2(23, 3)
 
 [node name="Protagonist" type="CharacterBody2D"]
 position = Vector2(24, 24)
@@ -339,18 +366,19 @@ stream = ExtResource("3_w61n7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.1875, 1.1875)
 sprite_frames = SubResource("SpriteFrames_m3jk3")
-animation = &"idle_and_swing"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5)
-shape = SubResource("RectangleShape2D_bbt0j")
+rotation = 1.5708
+shape = SubResource("CircleShape2D_pdaj1")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_m6d4j")
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_5f3ul")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.4
@@ -359,6 +387,12 @@ shadow_filter_smooth = 50.0
 texture = ExtResource("9_r63to")
 texture_scale = 0.3
 
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("9_yv31y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_fum14")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
-[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]

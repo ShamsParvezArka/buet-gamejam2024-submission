@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3ee2t4b5aj6a"]
+[gd_scene load_steps=28 format=3 uid="uid://b3ee2t4b5aj6a"]
 
 [ext_resource type="PackedScene" uid="uid://p1f0m740q7ya" path="res://scenes/levels/level_0.tscn" id="1_2qjf0"]
 [ext_resource type="PackedScene" uid="uid://bvhrdyvtjb3xc" path="res://scenes/protagonist.tscn" id="1_hjr4h"]
@@ -10,6 +10,10 @@
 [ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_oya6c"]
 [ext_resource type="PackedScene" uid="uid://cmo1hg5juafph" path="res://scenes/mobs/mob_bat.tscn" id="10_2owwj"]
 [ext_resource type="Script" path="res://scripts/teleport.gd" id="10_mo7xf"]
+[ext_resource type="PackedScene" uid="uid://ce38j6kx5xtb0" path="res://scenes/props/lever.tscn" id="11_fhcxn"]
+[ext_resource type="PackedScene" uid="uid://dv3n5oevempgi" path="res://scenes/props/spike.tscn" id="12_jpu7b"]
+[ext_resource type="Script" path="res://scripts/spike.gd" id="13_jpywk"]
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="14_qcbdw"]
 
 [sub_resource type="Curve2D" id="Curve2D_rcv58"]
 _data = {
@@ -286,6 +290,12 @@ _data = {
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5olja"]
 b = Vector2(0, 21.1957)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nkka"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omc41"]
+radius = 13.0
+
 [node name="Main" type="Node2D"]
 
 [node name="Level1" parent="." instance=ExtResource("1_wyipa")]
@@ -297,14 +307,6 @@ position = Vector2(1, 1)
 [node name="Chest" parent="." instance=ExtResource("2_3xbwn")]
 position = Vector2(402, 123)
 scale = Vector2(1.31999, 1.16)
-
-[node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(1222, 366)
-
-[node name="Camera2D" type="Camera2D" parent="Protagonist"]
-position = Vector2(-1, 0)
-enabled = false
-zoom = Vector2(4, 4)
 
 [node name="VoidSpaceCutScene" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -421,14 +423,56 @@ scale = Vector2(5.86272, 1)
 shape = SubResource("SegmentShape2D_5olja")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.325441, 0.325441, 0.325441, 1)
 
 [node name="MobBat" parent="." instance=ExtResource("10_2owwj")]
-position = Vector2(1235, 175)
+position = Vector2(1197, 300)
+
+[node name="Spike" parent="." instance=ExtResource("12_jpu7b")]
+position = Vector2(1447, 416)
+script = ExtResource("13_jpywk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
+shape = SubResource("RectangleShape2D_7nkka")
+
+[node name="Spike2" parent="." instance=ExtResource("12_jpu7b")]
+position = Vector2(1463, 416)
+script = ExtResource("13_jpywk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike2"]
+shape = SubResource("RectangleShape2D_7nkka")
+
+[node name="Puzzle" type="Node2D" parent="."]
+position = Vector2(0, 14)
+
+[node name="lever" parent="Puzzle" instance=ExtResource("11_fhcxn")]
+position = Vector2(1208, 221)
+
+[node name="lever2" parent="Puzzle" instance=ExtResource("11_fhcxn")]
+position = Vector2(1432, 349)
+
+[node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
+position = Vector2(1241, 528)
+
+[node name="Camera2D" type="Camera2D" parent="Protagonist"]
+position = Vector2(-1, 0)
+enabled = false
+zoom = Vector2(4, 4)
+
+[node name="Checkpoint" type="Area2D" parent="Protagonist"]
+position = Vector2(0, -1)
+script = ExtResource("14_qcbdw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Protagonist/Checkpoint"]
+shape = SubResource("CircleShape2D_omc41")
 
 [connection signal="body_entered" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_entered"]
 [connection signal="body_exited" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_exited"]
 [connection signal="animation_finished" from="VoidSpaceCutScene/AnimationPlayer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="FridgeCutScene/Area2D" to="FridgeCutScene/Area2D" method="_on_body_entered"]
 [connection signal="animation_finished" from="FridgeCutScene/AnimationPlayer" to="FridgeCutScene/Area2D" method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="EndArea2D" to="Protagonist" method="_on_end_area_2d_area_entered"]
 [connection signal="body_entered" from="EndArea2D" to="EndArea2D" method="_on_body_entered"]
+[connection signal="area_entered" from="Protagonist/Checkpoint" to="Protagonist/Checkpoint" method="_on_area_entered"]

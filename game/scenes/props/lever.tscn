@@ -1,6 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce38j6kx5xtb0"]
+[gd_scene load_steps=15 format=3 uid="uid://ce38j6kx5xtb0"]
 
 [ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_4lfr6"]
+[ext_resource type="Script" path="res://scripts/lever_body.gd" id="1_ch5k3"]
+[ext_resource type="Script" path="res://scripts/lever.gd" id="2_0yqsv"]
+[ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="2_cgal6"]
+[ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="3_gx7gt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ve3fx"]
 atlas = ExtResource("1_4lfr6")
@@ -14,6 +18,18 @@ region = Rect2(80, 16, 16, 16)
 atlas = ExtResource("1_4lfr6")
 region = Rect2(96, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm1q0"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81nd8"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqgev"]
+atlas = ExtResource("1_4lfr6")
+region = Rect2(64, 16, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6puw"]
 animations = [{
 "frames": [{
@@ -26,21 +42,69 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wa7qe")
 }],
-"loop": true,
-"name": &"lever",
+"loop": false,
+"name": &"pull",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm1q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81nd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqgev")
+}],
+"loop": false,
+"name": &"pull_backward",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7rerw"]
-size = Vector2(11, 6)
+size = Vector2(11, 7.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swqih"]
+radius = 13.0
 
 [node name="lever" type="StaticBody2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_ch5k3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t6puw")
-animation = &"lever"
-frame_progress = 0.7041
+animation = &"pull"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-0.5, 0.75)
 shape = SubResource("RectangleShape2D_7rerw")
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Prompt"]
+offset_left = -26.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 21.0
+scale = Vector2(0.239996, 0.24)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_cgal6")
+text = "Pull"
+
+[node name="Key" type="Sprite2D" parent="Prompt"]
+position = Vector2(-30, 0)
+scale = Vector2(0.400003, 0.453561)
+texture = ExtResource("3_gx7gt")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="LevelArea" type="Area2D" parent="."]
+script = ExtResource("2_0yqsv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelArea"]
+shape = SubResource("CircleShape2D_swqih")
+
+[connection signal="body_entered" from="LevelArea" to="LevelArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LevelArea" to="LevelArea" method="_on_body_exited"]
