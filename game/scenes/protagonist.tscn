@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bvhrdyvtjb3xc"]
+[gd_scene load_steps=50 format=3 uid="uid://bvhrdyvtjb3xc"]
 
 [ext_resource type="Script" path="res://scripts/protagonist.gd" id="1_rko0e"]
 [ext_resource type="Texture2D" uid="uid://ckm3rxam3p7dv" path="res://assets/SGQ_Dungeon/characters/main/elf.png" id="1_ykllr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rilyahmyn865" path="res://assets/SGQ_Dungeon/characters/main/run_and_swing.png" id="4_sbauk"]
 [ext_resource type="Texture2D" uid="uid://dei5fleh3xa37" path="res://assets/SGQ_Dungeon/characters/main/sowrd_idle.png" id="5_fioxv"]
 [ext_resource type="Texture2D" uid="uid://uc33tun8xond" path="res://assets/SGQ_Dungeon/characters/main/sowrd_run.png" id="6_ovuu8"]
+[ext_resource type="Texture2D" uid="uid://c1kcsd0sqp2wf" path="res://assets/light.png" id="9_r63to"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jm80k"]
 atlas = ExtResource("1_ykllr")
@@ -350,6 +351,13 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_m6d4j")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.4
+shadow_filter = 1
+shadow_filter_smooth = 50.0
+texture = ExtResource("9_r63to")
+texture_scale = 0.3
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

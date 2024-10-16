@@ -298,7 +298,7 @@ position = Vector2(402, 123)
 scale = Vector2(1.31999, 1.16)
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(661, 234)
+position = Vector2(1222, 366)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 position = Vector2(-1, 0)
@@ -418,6 +418,9 @@ script = ExtResource("10_mo7xf")
 position = Vector2(0, -10.3261)
 scale = Vector2(5.86272, 1)
 shape = SubResource("SegmentShape2D_5olja")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.325441, 0.325441, 0.325441, 1)
 
 [connection signal="body_entered" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_entered"]
 [connection signal="body_exited" from="VoidSpaceCutScene/CutSceneTriggerer" to="VoidSpaceCutScene/CutSceneTriggerer" method="_on_body_exited"]

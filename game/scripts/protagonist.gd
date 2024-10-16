@@ -84,4 +84,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		state_machine.play("sowrd_idle")
 		attacking = false
 	elif state_machine.animation == "teleport":
-		self.position = Vector2(1250, 511)
+		teleport = false
+		can_move = true
+		position = Vector2(1250, 511)
