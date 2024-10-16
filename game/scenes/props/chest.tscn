@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://0jb7hhe0q14v"]
+[gd_scene load_steps=15 format=3 uid="uid://0jb7hhe0q14v"]
 
 [ext_resource type="Script" path="res://scripts/chest.gd" id="1_0wdmw"]
 [ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_no5xa"]
+[ext_resource type="AudioStream" uid="uid://ct1k5v0kx65wn" path="res://assets/sfx/chest_open.wav" id="2_vaoef"]
+[ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="2_wo61y"]
+[ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="3_1hhf2"]
+[ext_resource type="AudioStream" uid="uid://di4qnyspu5mgv" path="res://assets/sfx/chest_close.wav" id="3_k4vm6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mco14"]
 atlas = ExtResource("1_no5xa")
@@ -55,10 +59,37 @@ animations = [{
 size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ppbr"]
-size = Vector2(16, 16)
+size = Vector2(20, 19)
 
 [node name="Chest" type="StaticBody2D"]
 script = ExtResource("1_0wdmw")
+
+[node name="Prompt" type="Node2D" parent="."]
+visible = false
+position = Vector2(10, 2)
+
+[node name="Label" type="Label" parent="Prompt"]
+offset_left = -34.0
+offset_top = -4.0
+offset_right = 30.0
+offset_bottom = 19.0
+scale = Vector2(0.199999, 0.251672)
+theme_override_colors/font_color = Color(0.345098, 0.266667, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_wo61y")
+text = "open"
+
+[node name="Key" type="Sprite2D" parent="Prompt"]
+position = Vector2(-38, -2)
+scale = Vector2(0.36, 0.4)
+texture = ExtResource("3_1hhf2")
+hframes = 3
+vframes = 2
+
+[node name="AudioChestOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_vaoef")
+
+[node name="AudioChestClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k4vm6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l0fiy")
@@ -70,6 +101,7 @@ shape = SubResource("RectangleShape2D_ocx0c")
 [node name="ChestArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChestArea"]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_2ppbr")
 
 [connection signal="body_entered" from="ChestArea" to="." method="_on_area_2d_body_entered"]
