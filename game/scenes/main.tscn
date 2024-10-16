@@ -294,7 +294,7 @@ position = Vector2(402, 123)
 scale = Vector2(1.31999, 1.16)
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(505, 291)
+position = Vector2(664, 256)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 position = Vector2(-1, 0)

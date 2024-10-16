@@ -58,10 +58,8 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("key_x"):
 		weapon_equipped = !weapon_equipped
 	
-	if can_move == true:
+	if can_move:
 		animate_sprite()
-	elif teleport == true:
-		state_machine.play("teleport")
 
 
 func _ready() -> void:
@@ -75,6 +73,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	elif !can_move and weapon_equipped:
 		state_machine.play("sowrd_idle")
+	elif !can_move and teleport:
+		state_machine.play("teleport")
 	else:
 		state_machine.play("idle")
 
@@ -83,3 +83,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if state_machine.animation == "idle_and_swing":
 		state_machine.play("sowrd_idle")
 		attacking = false
+	elif state_machine.animation == "teleport":
+		print("level finished")
