@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var chest: StaticBody2D = $"../Chest"
 @onready var audio_run: AudioStreamPlayer2D = $AudioRun
 @onready var audio_sowrd_swing: AudioStreamPlayer2D = $AudioSowrdSwing
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
 var can_move := true
 var teleport := false
@@ -31,9 +32,14 @@ func animate_sprite() -> void:
 			state_machine.play("sowrd_run")
 		elif Input.is_action_just_pressed("mouse_left") and !attacking:
 			attacking = true
+			collision_shape_2d.scale = Vector2(2, 2)
+			
 			if !audio_sowrd_swing.playing:
 				audio_sowrd_swing.play()
+				
 			state_machine.play("idle_and_swing")
+		elif Input.is_action_just_released("mouse_left"):
+			collision_shape_2d.scale = Vector2(1, 1)
 			
 		elif !movement and !attacking:
 			state_machine.play("sowrd_idle")
@@ -71,6 +77,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(collision_shape_2d.scale)
+	
 	if can_move:
 		move_and_slide()
 	elif !can_move and weapon_equipped:

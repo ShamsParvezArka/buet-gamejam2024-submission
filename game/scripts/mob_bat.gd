@@ -27,6 +27,7 @@ var has_entered = false
 func _ready() -> void:
 	mob_animated_sprite_2d.play("fly_right")
 	
+	
 func apply_knockback(player_position: Vector2):
 	if is_facing_player(player):
 		# Calculate the direction away from the player
@@ -35,15 +36,10 @@ func apply_knockback(player_position: Vector2):
 		knockback_velocity = knockback_direction * knockback_force
 		is_knocked_back = true
 		is_damaged = true
-		#destroying the mob
+		
 		if mob_life > 0:
 			mob_life -= 1
-		elif mob_life == 0:
-			queue_free()
-		
-		
-		
-		
+			
 
 func is_facing_player(player: Node2D) -> bool:
 	var player_on_right = player.position.x > position.x
@@ -56,6 +52,7 @@ func is_facing_player(player: Node2D) -> bool:
 	elif not player_on_right and not player.is_facing_left:  # Bird is facing left, player is on left
 		return true
 	return false
+	
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if (area == player_area_2d):
@@ -63,7 +60,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if not is_damaged:
 			mob_animated_sprite_2d.play("attack_right")
 		has_entered = true
-
 
 
 func _on_area_2d_area_exited(body: Node2D) -> void:
@@ -75,9 +71,14 @@ func _on_area_2d_area_exited(body: Node2D) -> void:
 		mob_animated_sprite_2d.play("damage_right")
 	has_entered = false
 	
+	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if mob_animated_sprite_2d.animation == "damage_right":
 		mob_animated_sprite_2d.play("fly_right")
+		
+		if mob_life == 0:
+			queue_free()
+			
 
 func _physics_process(delta: float) -> void:
 	player_position = player.position
@@ -98,10 +99,10 @@ func _physics_process(delta: float) -> void:
 		mob_animated_sprite_2d.flip_h = false
 	rotation_degrees = wrap(rotation_degrees , 0 , 360)
 	
-	if (Input.is_action_just_released("mouse_left") and has_entered and player.weapon_equipped):
+	if (Input.is_action_just_pressed("mouse_left") and has_entered and player.weapon_equipped):
 		if(player.scale.x == self.scale.x ):
 			apply_knockback(player.position)
-			
+
 	if is_knocked_back:
 		# Apply knockback effect
 		await get_tree().create_timer(.1).timeout
