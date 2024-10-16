@@ -12,15 +12,17 @@ var has_sowrd := false
 var is_played := false
 var weapon_equipped := false
 var attacking := false
-
+var is_facing_left:= false
 
 func animate_sprite() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	if direction > 0:
 		state_machine.flip_h = false
+		is_facing_left = false
 	elif direction < 0:
 		state_machine.flip_h = true
+		is_facing_left = true
 	
 	var movement := Input.get_vector("move_right", "move_left", "move_down", "move_up")
 
