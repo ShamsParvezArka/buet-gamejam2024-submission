@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b3ee2t4b5aj6a"]
+[gd_scene load_steps=31 format=3 uid="uid://b3ee2t4b5aj6a"]
 
 [ext_resource type="PackedScene" uid="uid://p1f0m740q7ya" path="res://scenes/levels/level_0.tscn" id="1_2qjf0"]
 [ext_resource type="PackedScene" uid="uid://bvhrdyvtjb3xc" path="res://scenes/protagonist.tscn" id="1_hjr4h"]
@@ -6,30 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://0jb7hhe0q14v" path="res://scenes/props/chest.tscn" id="2_3xbwn"]
 [ext_resource type="Script" path="res://scripts/cut_scene_triggerer.gd" id="6_wdkr3"]
 [ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="7_lgcqc"]
-[ext_resource type="Script" path="res://scripts/canvas_modulate.gd" id="8_r7ree"]
 [ext_resource type="Script" path="res://scripts/fridge_cut_scene.gd" id="8_xhwsq"]
+[ext_resource type="FontFile" uid="uid://c02h7y0vgv76u" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="9_oya6c"]
 [ext_resource type="PackedScene" uid="uid://cmo1hg5juafph" path="res://scenes/mobs/mob_bat.tscn" id="10_2owwj"]
 [ext_resource type="Script" path="res://scripts/teleport.gd" id="10_mo7xf"]
 [ext_resource type="PackedScene" uid="uid://ce38j6kx5xtb0" path="res://scenes/props/lever.tscn" id="11_fhcxn"]
 [ext_resource type="PackedScene" uid="uid://dv3n5oevempgi" path="res://scenes/props/spike.tscn" id="12_jpu7b"]
 [ext_resource type="Script" path="res://scripts/spike.gd" id="13_jpywk"]
-[ext_resource type="Texture2D" uid="uid://c1kcsd0sqp2wf" path="res://assets/light.png" id="14_b6cme"]
 [ext_resource type="Script" path="res://scripts/checkpoint.gd" id="14_qcbdw"]
-
-[sub_resource type="Animation" id="Animation_5jho6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ItemLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_r7wvv"]
 resource_name = "sowrd_obtained"
@@ -44,6 +28,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5jho6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gu40m"]
@@ -325,7 +324,7 @@ _data = {
 }
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5olja"]
-b = Vector2(-1.52588e-05, 13.0435)
+b = Vector2(0, 21.1957)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nkka"]
 size = Vector2(10, 10)
@@ -443,12 +442,12 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="ReasonToLive" type="Label" parent="FridgeCutScene"]
-offset_left = -42.0
-offset_top = -150.0
-offset_right = 452.0
-offset_bottom = -129.0
-scale = Vector2(0.215, 0.28)
-theme_override_fonts/font = ExtResource("7_lgcqc")
+offset_left = -48.0
+offset_top = -151.0
+offset_right = 446.0
+offset_bottom = -130.0
+scale = Vector2(0.212, 0.359995)
+theme_override_fonts/font = ExtResource("9_oya6c")
 text = "the reason why you  are still alive!"
 visible_characters = 0
 visible_ratio = 0.0
@@ -467,7 +466,7 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="EndArea2D" type="Area2D" parent="."]
-position = Vector2(744, 338)
+position = Vector2(717, 311)
 scale = Vector2(2.04001, 1.84)
 script = ExtResource("10_mo7xf")
 
@@ -477,23 +476,24 @@ scale = Vector2(5.86272, 1)
 shape = SubResource("SegmentShape2D_5olja")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-script = ExtResource("8_r7ree")
+visible = false
+color = Color(0.325441, 0.325441, 0.325441, 1)
 
 [node name="MobBat" parent="." instance=ExtResource("10_2owwj")]
-position = Vector2(1253, 165)
+position = Vector2(1197, 300)
 
 [node name="Spike" parent="." instance=ExtResource("12_jpu7b")]
 position = Vector2(1447, 416)
 script = ExtResource("13_jpywk")
 
-[node name="SpikeZone" type="CollisionShape2D" parent="Spike"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
 shape = SubResource("RectangleShape2D_7nkka")
 
 [node name="Spike2" parent="." instance=ExtResource("12_jpu7b")]
 position = Vector2(1463, 416)
 script = ExtResource("13_jpywk")
 
-[node name="SpikeZone" type="CollisionShape2D" parent="Spike2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike2"]
 shape = SubResource("RectangleShape2D_7nkka")
 
 [node name="Puzzle" type="Node2D" parent="."]
@@ -505,23 +505,8 @@ position = Vector2(1208, 221)
 [node name="lever2" parent="Puzzle" instance=ExtResource("11_fhcxn")]
 position = Vector2(1432, 349)
 
-[node name="EndArea2D2" type="Area2D" parent="."]
-position = Vector2(1441, 503)
-scale = Vector2(2.04001, 1.84)
-script = ExtResource("10_mo7xf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea2D2"]
-position = Vector2(0, -10.3261)
-scale = Vector2(5.86272, 1)
-shape = SubResource("SegmentShape2D_5olja")
-
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(693, 307)
-
-[node name="PointLight2D2" type="PointLight2D" parent="Protagonist"]
-energy = 0.7
-texture = ExtResource("14_b6cme")
-texture_scale = 0.25
+position = Vector2(408, 150)
 
 [node name="Camera2D" type="Camera2D" parent="Protagonist"]
 position = Vector2(-1, 0)
@@ -543,7 +528,4 @@ shape = SubResource("CircleShape2D_omc41")
 [connection signal="animation_finished" from="FridgeCutScene/AnimationPlayer" to="FridgeCutScene/Area2D" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="EndArea2D" to="Protagonist" method="_on_end_area_2d_area_entered"]
 [connection signal="body_entered" from="EndArea2D" to="EndArea2D" method="_on_body_entered"]
-[connection signal="area_entered" from="EndArea2D2" to="Protagonist" method="_on_end_area_2d_area_entered"]
-[connection signal="body_entered" from="EndArea2D2" to="EndArea2D2" method="_on_body_entered"]
 [connection signal="area_entered" from="Protagonist/Checkpoint" to="Protagonist/Checkpoint" method="_on_area_entered"]
-[connection signal="area_exited" from="Protagonist/Checkpoint" to="Protagonist/Checkpoint" method="_on_area_exited"]

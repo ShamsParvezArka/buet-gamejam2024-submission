@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv3n5oevempgi"]
+[gd_scene load_steps=9 format=3 uid="uid://dv3n5oevempgi"]
 
 [ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_p46sn"]
 
@@ -57,17 +57,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_proyu"]
-size = Vector2(20, 6)
-
 [node name="Spike" type="StaticBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yb7y0")
 animation = &"spike_up"
-
-[node name="SpikeZone" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeZone"]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_proyu")

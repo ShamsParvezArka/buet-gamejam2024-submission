@@ -6,9 +6,13 @@ extends StaticBody2D
 @onready var audio_chest_close: AudioStreamPlayer2D = $AudioChestClose
 @onready var prompt: Node2D = $Prompt
 @onready var key: Sprite2D = $Prompt/Key
+@onready var item_prompt: AnimationPlayer = $AnimationPlayer
+@onready var item_label: Label = $ItemLabel
 
 var inside := false
 var open := false
+var is_sowrd_obtained := false
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Protagonist":
@@ -33,3 +37,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		prompt.visible = false
 		audio_chest_close.play()
 		animated_sprite_2d.play("chest_close")
+		item_label.visible = false
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "chest_open" and !is_sowrd_obtained:
+		item_label.visible = true
+		item_prompt.play("sowrd_obtained")
+		is_sowrd_obtained = true

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var audio_sowrd_swing: AudioStreamPlayer2D = $AudioSowrdSwing
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var puzzle: Node2D = $"../Puzzle"
+@onready var canvas_modulate: CanvasModulate = $"../CanvasModulate"
 
 var can_move := true
 var teleport := false
@@ -17,6 +18,7 @@ var attacking := false
 var is_facing_left:= false
 var switches := true
 var is_dead := false
+var level := 0
 
 var last_saved_pos := Vector2.ZERO
 var level1_spos := Vector2(1241, 528)
@@ -103,15 +105,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		state_machine.play("sowrd_idle")
 		attacking = false
 		collision_shape_2d.scale = Vector2(1, 1)
+		
 	elif state_machine.animation == "teleport":
 		teleport = false
-		can_move = true
 		position = level1_spos
+		state_machine.play("spawn")
+		can_move = true
+		
+	elif state_machine.animation == "spawn":
+		state_machine.play("idle")
+		
 	elif state_machine.animation == "dead":
 		is_dead = false
 		if last_saved_pos == Vector2.ZERO:
 			position = level1_spos
 		elif last_saved_pos != Vector2.ZERO:
 			position = last_saved_pos
-		state_machine.play("idle")
+		state_machine.play("spawn")
 		can_move = true

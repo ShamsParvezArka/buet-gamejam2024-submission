@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var SPEED = 20.0
+var SPEED = 30.0
 @export var chase_radius = 100
 var distance_offset_with_mob = 17
 
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_knocked_back:
 		# Apply knockback effect
-		await get_tree().create_timer(.1).timeout
+		#await get_tree().create_timer(.1).timeout
 		position += knockback_velocity * delta
 		knockback_velocity = lerp(knockback_velocity, Vector2.ZERO, 5 * delta)  # Reduce knockback gradually
 		if knockback_velocity.length() < 10:
