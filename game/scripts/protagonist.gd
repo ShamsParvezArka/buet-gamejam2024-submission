@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var puzzle: Node2D = $"../Puzzle"
 @onready var canvas_modulate: CanvasModulate = $"../CanvasModulate"
+@onready var helper: Node2D = $Camera2D/Helper
+@onready var helper_sprite: Sprite2D = $Camera2D/Helper/HelperSprite
 
 var can_move := true
 var teleport := false
@@ -19,6 +21,7 @@ var is_facing_left:= false
 var switches := true
 var is_dead := false
 var level := 0
+var end := false
 
 var last_saved_pos := Vector2.ZERO
 var level1_spos := Vector2(1241, 528)
@@ -70,6 +73,11 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("key_x"):
 		weapon_equipped = !weapon_equipped
 	
+	if weapon_equipped:
+		helper_sprite.frame_coords.y = 1
+	else:
+		helper_sprite.frame_coords.y = 0
+	
 	if can_move:
 		animate_sprite()
 
@@ -81,6 +89,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if chest.is_sowrd_obtained:
+		helper.visible = true
 	switches = true
 	for i in puzzle.get_children():
 		switches = switches and i.on
@@ -105,15 +115,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		attacking = false
 		collision_shape_2d.scale = Vector2(1.1, 1.1)
 		
-	elif state_machine.animation == "teleport":
+	elif state_machine.animation == "teleport" and !end:
 		teleport = false
-		if level == 1:
-			position = level1_spos
-			state_machine.play("spawn")
-			can_move = true
-		if level == 2:
-			get_tree().change_scene_to_file("res://scenes/the_end.tscn")
-		
+		position = level1_spos
+		state_machine.play("spawn")
+		can_move = true
+	
+	elif state_machine.animation == "teleport" and end:
+		position = Vector2(120, 132)
+		get_tree().change_scene_to_file("res://scenes/the_end.tscn")
+	
 	elif state_machine.animation == "spawn":
 		state_machine.play("idle")
 		

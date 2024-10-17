@@ -552,9 +552,8 @@ enabled = false
 zoom = Vector2(4, 4)
 
 [node name="Helper" type="Node2D" parent="Protagonist/Camera2D"]
-visible = false
 
-[node name="HelperSprite" type="Sprite2D" parent="Protagonist/Camera2D/Helper"]
+[node name="Helper" type="Sprite2D" parent="Protagonist/Camera2D/Helper"]
 position = Vector2(-129, 70)
 scale = Vector2(0.787348, 0.739409)
 texture = ExtResource("17_4a66p")
