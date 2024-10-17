@@ -362,7 +362,7 @@ offset_bottom = 54.8276
 scale = Vector2(0.333326, 0.448274)
 theme_override_colors/font_color = Color(0.345098, 0.266667, 0.133333, 1)
 theme_override_fonts/font = ExtResource("7_lgcqc")
-text = "Sowrd  
+text = "Sword  
      Obtained!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Chest"]
@@ -539,7 +539,7 @@ position = Vector2(-4, 2)
 shape = SubResource("CircleShape2D_qm8si")
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(1451, 446)
+position = Vector2(112, 130)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Protagonist"]
 energy = 0.7
@@ -552,6 +552,7 @@ enabled = false
 zoom = Vector2(4, 4)
 
 [node name="Helper" type="Node2D" parent="Protagonist/Camera2D"]
+visible = false
 position = Vector2(0, -25)
 
 [node name="HelperSprite" type="Sprite2D" parent="Protagonist/Camera2D/Helper"]
@@ -569,7 +570,7 @@ offset_right = -39.0
 offset_bottom = 90.0
 scale = Vector2(0.331818, 0.435897)
 theme_override_fonts/font = ExtResource("18_3riws")
-text = "Sowrd"
+text = "Sword"
 
 [node name="Checkpoint" type="Area2D" parent="Protagonist"]
 position = Vector2(0, -1)
