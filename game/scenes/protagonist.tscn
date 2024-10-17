@@ -402,7 +402,7 @@ radius = 5.02494
 size = Vector2(7, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fum14"]
-size = Vector2(23, 3)
+size = Vector2(16, 3)
 
 [node name="Protagonist" type="CharacterBody2D"]
 position = Vector2(24, 24)
@@ -411,7 +411,7 @@ metadata/_edit_group_ = true
 
 [node name="AudioRun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_m2xt4")
-volume_db = -18.0
+volume_db = -3.0
 
 [node name="AudioSowrdSwing" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_w61n7")
@@ -439,7 +439,7 @@ shape = SubResource("RectangleShape2D_5f3ul")
 script = ExtResource("9_yv31y")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(0, 7)
+position = Vector2(1, 7)
 shape = SubResource("RectangleShape2D_fum14")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

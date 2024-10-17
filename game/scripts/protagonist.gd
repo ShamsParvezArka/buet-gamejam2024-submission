@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 100
+@export var speed := 70
 @onready var state_machine := $AnimatedSprite2D
 @onready var chest: StaticBody2D = $"../Chest"
 @onready var audio_run: AudioStreamPlayer2D = $AudioRun
@@ -32,7 +32,7 @@ func animate_sprite() -> void:
 		collision_shape_2d.position.x = 11
 	elif direction < 0:
 		state_machine.flip_h = true
-		collision_shape_2d.position.x = -11
+		collision_shape_2d.position.x = -13
 		is_facing_left = true
 	
 	var movement := Input.get_vector("move_right", "move_left", "move_down", "move_up")
@@ -44,9 +44,8 @@ func animate_sprite() -> void:
 			attacking = true
 			if !audio_sowrd_swing.playing:
 				audio_sowrd_swing.play()
-				
+			collision_shape_2d.scale = Vector2(1.4, 1.4)
 			state_machine.play("idle_and_swing")
-			
 		elif !movement and !attacking:
 			state_machine.play("sowrd_idle")
 	else:
@@ -104,19 +103,23 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if state_machine.animation == "idle_and_swing":
 		state_machine.play("sowrd_idle")
 		attacking = false
-		collision_shape_2d.scale = Vector2(1, 1)
+		collision_shape_2d.scale = Vector2(1.1, 1.1)
 		
 	elif state_machine.animation == "teleport":
 		teleport = false
-		position = level1_spos
-		state_machine.play("spawn")
-		can_move = true
+		if level == 1:
+			position = level1_spos
+			state_machine.play("spawn")
+			can_move = true
+		if level == 2:
+			get_tree().change_scene_to_file("res://scenes/the_end.tscn")
 		
 	elif state_machine.animation == "spawn":
 		state_machine.play("idle")
 		
 	elif state_machine.animation == "dead":
 		is_dead = false
+		weapon_equipped = false
 		if last_saved_pos == Vector2.ZERO:
 			position = level1_spos
 		elif last_saved_pos != Vector2.ZERO:

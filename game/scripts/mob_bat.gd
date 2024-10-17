@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-
-var SPEED = 30.0
+var reset_speed := 25
+var SPEED := reset_speed
 @export var chase_radius = 100
 var distance_offset_with_mob = 17
 
@@ -56,7 +56,6 @@ func is_facing_player(player: Node2D) -> bool:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if (area == player_area_2d):
-		SPEED *= 1
 		if not is_damaged:
 			mob_animated_sprite_2d.play("attack_right")
 		has_entered = true
@@ -89,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		if position.distance_to(player_position) <= distance_offset_with_mob:
 			SPEED = 0
 		else:
-			SPEED = 10.0
+			SPEED = reset_speed
 		position += mob_position * SPEED * delta
 	else:
 		SPEED = 0

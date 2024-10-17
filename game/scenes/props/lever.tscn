@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ce38j6kx5xtb0"]
+[gd_scene load_steps=16 format=3 uid="uid://ce38j6kx5xtb0"]
 
 [ext_resource type="Texture2D" uid="uid://owaungek8f87" path="res://assets/SGQ_Dungeon/props/animated_props.png" id="1_4lfr6"]
 [ext_resource type="Script" path="res://scripts/lever_body.gd" id="1_ch5k3"]
 [ext_resource type="Script" path="res://scripts/lever.gd" id="2_0yqsv"]
 [ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="2_cgal6"]
+[ext_resource type="AudioStream" uid="uid://ccut5bphcdrau" path="res://assets/sfx/lever_pull.wav" id="2_o2qsl"]
 [ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="3_gx7gt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ve3fx"]
@@ -70,6 +71,9 @@ radius = 13.0
 [node name="lever" type="StaticBody2D"]
 scale = Vector2(1.2, 1.2)
 script = ExtResource("1_ch5k3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_o2qsl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t6puw")

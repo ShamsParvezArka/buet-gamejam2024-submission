@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bh8b0krwqniqq"]
+[gd_scene load_steps=17 format=3 uid="uid://bh8b0krwqniqq"]
 
 [ext_resource type="Texture2D" uid="uid://cjavnp3bvyvxe" path="res://assets/SGQ_ui/inputs/fxc.png" id="1_24cui"]
+[ext_resource type="AudioStream" uid="uid://b6eqhyidcw3w0" path="res://assets/sfx/checkpoint.wav" id="1_ar5ns"]
 [ext_resource type="Texture2D" uid="uid://53sinacovgkj" path="res://assets/SGQ_Dungeon/props/refrigerator.png" id="1_mbgc6"]
 [ext_resource type="Script" path="res://scripts/refrigerator.gd" id="2_06xgx"]
 [ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="2_ow5ev"]
@@ -96,6 +97,9 @@ _data = {
 }
 
 [node name="Refrigerator" type="StaticBody2D"]
+
+[node name="CheckPoint" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_ar5ns")
 
 [node name="Prompt" type="Node2D" parent="."]
 visible = false

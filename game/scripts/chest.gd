@@ -21,7 +21,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("key_f") and inside:
+	if Input.is_action_pressed("key_f") and inside and !open:
 		key.frame_coords.y = 1
 		audio_chest_open.play()
 		animated_sprite_2d.play("chest_open")

@@ -170,8 +170,8 @@ script = ExtResource("1_ds4ku")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l5m4b")
-animation = &"idle_left"
-frame_progress = 0.846749
+animation = &"move_right"
+autoplay = "move_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

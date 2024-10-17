@@ -4,6 +4,7 @@ extends Area2D
 @onready var prompt: Node2D = $"../Prompt"
 @onready var key: Sprite2D = $"../Prompt/Key"
 @onready var lever: StaticBody2D = $".."
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 
 var inside := false
 
@@ -23,8 +24,12 @@ func _input(event: InputEvent) -> void:
 		key.frame_coords.y = 1
 		if !lever.on:
 			animated_sprite_2d.play("pull")
+			if !audio_stream_player_2d.playing:
+				audio_stream_player_2d.play()
 		else:
 			animated_sprite_2d.play("pull_backward")
+			if !audio_stream_player_2d.playing:
+				audio_stream_player_2d.play()
 		lever.on = !lever.on
 	elif Input.is_action_just_released("key_c") and inside:
 		key.frame_coords.y = 0

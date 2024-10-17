@@ -1,0 +1,335 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpl678eypr2sx"]
+
+[ext_resource type="Texture2D" uid="uid://ceimyqwxcvuqt" path="res://assets/SGQ_Dungeon/storybg.png" id="1_hoq86"]
+[ext_resource type="FontFile" uid="uid://fpt7jhfd5me5" path="res://assets/fonts/PixelOperator8.ttf" id="2_0il8v"]
+[ext_resource type="Script" path="res://scripts/control_skip.gd" id="3_hpojf"]
+[ext_resource type="Texture2D" uid="uid://c8fff2ixnte0" path="res://assets/SGQ_ui/button.png" id="3_ock2s"]
+[ext_resource type="Texture2D" uid="uid://bf217dspv8ic4" path="res://assets/SGQ_ui/button_click.png" id="4_7igp6"]
+[ext_resource type="AudioStream" uid="uid://dn4r2y32egywo" path="res://assets/sfx/menu_select.wav" id="4_gr3nw"]
+[ext_resource type="Texture2D" uid="uid://dblsq7u2qlroh" path="res://assets/SGQ_ui/button_hover.png" id="5_onjua"]
+
+[sub_resource type="Animation" id="Animation_i8qri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase1:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase3:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("phase4:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("phase4:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Phase1:theme_override_colors/font_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Phase2:theme_override_colors/font_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Phase3:theme_override_colors/font_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_akqd6"]
+resource_name = "lore"
+length = 33.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase1:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5, 9.0666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.46667, 7.36663, 9.0666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase3:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12.0666, 15.0333, 15.9333, 18.0333, 20.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.475, 0.475, 1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("phase4:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(22.2, 25.1, 26.3333, 28.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.547, 0.547, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("phase4:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(31.1333, 32.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Phase1:theme_override_colors/font_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(9.4333, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Phase2:theme_override_colors/font_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(9.4333, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Phase3:theme_override_colors/font_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(20.6, 22.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ltu1"]
+_data = {
+"RESET": SubResource("Animation_i8qri"),
+"lore": SubResource("Animation_akqd6")
+}
+
+[node name="Story" type="CanvasGroup"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 512.0
+offset_bottom = 512.0
+texture = ExtResource("1_hoq86")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(145, 81)
+zoom = Vector2(4, 4)
+
+[node name="Phase1" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 690.0
+offset_bottom = 176.0
+scale = Vector2(0.403353, 0.463597)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0il8v")
+text = "ATMOS was once hailed as the kingdom's greatest
+hero, known for defeating countless enemies in battle. 
+"
+horizontal_alignment = 1
+
+[node name="Phase2" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 86.0
+offset_right = 685.0
+offset_bottom = 178.0
+scale = Vector2(0.4, 0.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0il8v")
+text = "After hearing rumors of a dark and powerful force 
+growing beneath an ancient mountain, he ventures into 
+the depths to face the evil, only to find himself
+ trapped in a dungeon that defies
+ the laws of life and death. "
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Phase3" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 47.0
+offset_right = 716.0
+offset_bottom = 158.0
+scale = Vector2(0.4, 0.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0il8v")
+text = "Upon entering this dungeon, he is stripped of his
+ freedom and forced into an endless cycle of  death 
+and rebirth. 
+
+
+Every  time he dies—whether in combat, or due to traps 
+— he awakens in front of the fridge, 
+perfectly restored but still trapped."
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="phase4" type="Label" parent="."]
+offset_left = -199.0
+offset_top = 59.0
+offset_right = 1523.0
+offset_bottom = 189.0
+scale = Vector2(0.4, 0.48)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_0il8v")
+text = "While the rest of the world has frozen, the dungeon holds 
+its own twisted reality, constantly changing 
+and morphing after each of atmos's wdeaths. 
+
+His mission becomes not just to escape, but to uncover 
+why he, the \"hero that never dies,\" 
+has been chosen for this torment."
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2ltu1")
+}
+autoplay = "lore"
+
+[node name="ControlSkip" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_hpojf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ControlSkip"]
+stream = ExtResource("4_gr3nw")
+
+[node name="TextureButton" type="TextureButton" parent="ControlSkip"]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 147.0
+offset_right = 289.0
+offset_bottom = 187.0
+texture_normal = ExtResource("3_ock2s")
+texture_pressed = ExtResource("4_7igp6")
+texture_hover = ExtResource("5_onjua")
+
+[node name="Label" type="Label" parent="ControlSkip/TextureButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 58.0
+offset_bottom = 26.0
+scale = Vector2(0.32469, 0.345694)
+theme_override_fonts/font = ExtResource("2_0il8v")
+text = "skip"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="ControlSkip" method="_on_animation_player_animation_finished"]
+[connection signal="button_up" from="ControlSkip/TextureButton" to="ControlSkip" method="_on_texture_button_button_up"]
+[connection signal="mouse_entered" from="ControlSkip/TextureButton" to="ControlSkip" method="_on_texture_button_mouse_entered"]

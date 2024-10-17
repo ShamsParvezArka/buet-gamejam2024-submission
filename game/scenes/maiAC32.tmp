@@ -527,7 +527,7 @@ shape = SubResource("SegmentShape2D_5olja")
 position = Vector2(1513, 494)
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(691, 309)
+position = Vector2(1457, 448)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Protagonist"]
 energy = 0.7
