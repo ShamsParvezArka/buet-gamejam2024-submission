@@ -7,6 +7,6 @@ extends CanvasModulate
 func _process(delta: float) -> void:
 	if protagonist.level == 0:
 		point_light_2d_2.visible = false
-		color = "#ffffff" 
-	elif protagonist.level == 1:
-		point_light_2d_2.visible = true
+		color = "#ffffff"
+	#elif protagonist.level == 1:
+	#	point_light_2d_2.visible = true

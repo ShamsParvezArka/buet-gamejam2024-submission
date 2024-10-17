@@ -700,4 +700,7 @@ shape = SubResource("RectangleShape2D_f28hw")
 [node name="torch" parent="." instance=ExtResource("11_3hdqx")]
 position = Vector2(327, 257)
 
+[node name="torch2" parent="." instance=ExtResource("11_3hdqx")]
+position = Vector2(507, 362)
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

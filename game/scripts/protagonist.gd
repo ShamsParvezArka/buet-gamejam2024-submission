@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var canvas_modulate: CanvasModulate = $"../CanvasModulate"
 @onready var helper: Node2D = $Camera2D/Helper
 @onready var helper_sprite: Sprite2D = $Camera2D/Helper/HelperSprite
+@onready var point_light_2d_2: PointLight2D = $PointLight2D2
 
 var can_move := true
 var teleport := false
@@ -43,6 +44,8 @@ func animate_sprite() -> void:
 	if weapon_equipped:
 		if movement and !attacking:
 			state_machine.play("sowrd_run")
+			if !audio_run.playing:
+				audio_run.play()
 		elif Input.is_action_just_pressed("mouse_left") and !attacking:
 			attacking = true
 			if !audio_sowrd_swing.playing:
@@ -105,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		state_machine.play("sowrd_idle")
 	elif !can_move and teleport:
 		state_machine.play("teleport")
+		has_sowrd = true
 	else:
 		state_machine.play("idle")
 
@@ -115,17 +119,21 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		attacking = false
 		collision_shape_2d.scale = Vector2(1.1, 1.1)
 		
+
 	elif state_machine.animation == "teleport" and !end:
 		teleport = false
 		position = level1_spos
 		state_machine.play("spawn")
 		can_move = true
+		if level > 0:
+			point_light_2d_2.visible = true
 	
 	elif state_machine.animation == "teleport" and end:
 		position = Vector2(120, 132)
 		get_tree().change_scene_to_file("res://scenes/the_end.tscn")
 	
 	elif state_machine.animation == "spawn":
+		has_sowrd = true
 		state_machine.play("idle")
 		
 	elif state_machine.animation == "dead":

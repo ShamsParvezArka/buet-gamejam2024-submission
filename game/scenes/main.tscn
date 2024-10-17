@@ -328,14 +328,14 @@ _data = {
 "show_cut_scene": SubResource("Animation_m0kqm")
 }
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_5olja"]
-b = Vector2(-1.52588e-05, 13.0435)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjm22"]
+radius = 2.32141
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nkka"]
 size = Vector2(10, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qm8si"]
-radius = 22.0
+radius = 8.06226
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omc41"]
 radius = 13.0
@@ -475,14 +475,14 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="EndArea2D" type="Area2D" parent="."]
-position = Vector2(744, 338)
-scale = Vector2(2.04001, 1.84)
+position = Vector2(740, 341)
+scale = Vector2(1.31717, 1.80052)
 script = ExtResource("10_mo7xf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea2D"]
-position = Vector2(0, -10.3261)
-scale = Vector2(5.86272, 1)
-shape = SubResource("SegmentShape2D_5olja")
+position = Vector2(-1.51841, -3.33238)
+scale = Vector2(3.28674, 2.40627)
+shape = SubResource("CircleShape2D_fjm22")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 script = ExtResource("8_r7ree")
@@ -494,7 +494,7 @@ position = Vector2(1320, 200)
 position = Vector2(1144, 224)
 
 [node name="MobBat3" parent="." instance=ExtResource("10_2owwj")]
-position = Vector2(1306, 300)
+position = Vector2(1437, 337)
 
 [node name="Spike" parent="." instance=ExtResource("12_jpu7b")]
 position = Vector2(1447, 416)
@@ -525,10 +525,10 @@ position = Vector2(1513, 494)
 [node name="EndPortal" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1434.0
-offset_top = 495.0
-offset_right = 1474.0
-offset_bottom = 535.0
+offset_left = 1420.0
+offset_top = 501.0
+offset_right = 1460.0
+offset_bottom = 541.0
 script = ExtResource("14_qhi22")
 metadata/_edit_group_ = true
 
@@ -539,7 +539,7 @@ position = Vector2(-4, 2)
 shape = SubResource("CircleShape2D_qm8si")
 
 [node name="Protagonist" parent="." instance=ExtResource("1_hjr4h")]
-position = Vector2(182, 126)
+position = Vector2(1451, 446)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Protagonist"]
 energy = 0.7
@@ -552,7 +552,7 @@ enabled = false
 zoom = Vector2(4, 4)
 
 [node name="Helper" type="Node2D" parent="Protagonist/Camera2D"]
-visible = false
+position = Vector2(0, -25)
 
 [node name="HelperSprite" type="Sprite2D" parent="Protagonist/Camera2D/Helper"]
 position = Vector2(-129, 70)
